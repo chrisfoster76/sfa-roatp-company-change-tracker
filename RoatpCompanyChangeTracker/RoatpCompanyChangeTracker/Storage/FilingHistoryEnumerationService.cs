@@ -1,12 +1,10 @@
-﻿using System.Collections.Immutable;
-using RoatpCompanyChangeTracker.Models.Data.Baseline;
-using YamlDotNet.RepresentationModel;
+﻿using RoatpCompanyChangeTracker.Models.Data.Baseline;
 
 namespace RoatpCompanyChangeTracker.Storage
 {
     internal class FilingHistoryEnumerationService
     {
-        private Dictionary<string, string> _data;
+        private readonly Dictionary<string, string> _data;
 
         public FilingHistoryEnumerationService()
         {
@@ -17,10 +15,7 @@ namespace RoatpCompanyChangeTracker.Storage
             foreach (var line in data)
             {
                 var splitLine = line.Split(':');
-
                 _data.Add(splitLine[0].Replace("\'", "").Trim(), splitLine[1].Replace("\"", "").Trim());
-
-                //Console.WriteLine($"{kvp.Key} - {kvp.Value}" );
             }
         }
 
@@ -29,16 +24,12 @@ namespace RoatpCompanyChangeTracker.Storage
 
         public string GetDescription(Item item)
         {
-            if (item.description == "appoint-person-director-company-with-name-date")
-            {
-
-            }
-
             if (!_data.ContainsKey(item.description))
             {
                 return "";
             }
 
+            if (item.description_values == null) return item.description;
 
             var description = _data[item.description];
 

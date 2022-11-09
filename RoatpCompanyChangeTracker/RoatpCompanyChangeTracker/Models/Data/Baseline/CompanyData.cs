@@ -1,12 +1,14 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.Primitives;
 
 namespace RoatpCompanyChangeTracker.Models.Data.Baseline
 {
     internal class CompanyData
     {
         public string CompanyNumber { get; set; }
+        public string? RootCompanyNumber { get; set; }
+        public string? ParentCompanyNumber { get; set; }
+        public string Ukprn { get; set; }
         public string CompanyName { get; set; }
         public string ProfileData { get; set; }
         public string OfficersData { get; set; }

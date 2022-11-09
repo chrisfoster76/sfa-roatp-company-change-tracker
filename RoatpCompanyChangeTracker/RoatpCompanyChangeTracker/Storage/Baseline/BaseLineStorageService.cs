@@ -30,7 +30,7 @@ namespace RoatpCompanyChangeTracker.Storage.Baseline
                 return company;
             }
 
-            var sql = $"select [CompanyNumber], [CompanyName], [PscData], [OfficersData], [ProfileData], [FilingHistoryData] from [ProviderCompany] where CompanyNumber = '{companyNumber}'";
+            var sql = $"select [CompanyNumber], [RootCompanyNumber], [ParentCompanyNumber], [CompanyName], [PscData], [OfficersData], [ProfileData], [FilingHistoryData] from [ProviderCompany] where CompanyNumber = '{companyNumber}'";
 
             try
             {
@@ -40,6 +40,22 @@ namespace RoatpCompanyChangeTracker.Storage.Baseline
                 
                 
                 return result;
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Error {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<List<CompanyData>> GetCompanies()
+        {
+            var sql = $"select [CompanyNumber], [RootCompanyNumber], [ParentCompanyNumber], [CompanyName], [PscData], [OfficersData], [ProfileData], [FilingHistoryData] from [ProviderCompany]";
+
+            try
+            {
+                var result = await _sqlConnection.QueryAsync<CompanyData>(sql);
+                return result.ToList();
             }
             catch (SqlException ex)
             {

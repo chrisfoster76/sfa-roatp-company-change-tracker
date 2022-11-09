@@ -11,7 +11,6 @@ namespace RoatpCompanyChangeTracker.Storage
     {
         internal List<RoatpProvider> GetProviders()
         {
-
             Console.WriteLine("Loading providers...");
 
             var providerdata = File.ReadAllLines(@"localdata\ProviderCompanies.txt");
@@ -35,6 +34,5 @@ namespace RoatpCompanyChangeTracker.Storage
             return result;
 
         }
-
     }
 }

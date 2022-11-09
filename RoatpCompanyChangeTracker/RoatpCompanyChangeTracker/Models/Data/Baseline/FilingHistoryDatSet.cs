@@ -69,13 +69,6 @@ namespace RoatpCompanyChangeTracker.Models.Data.Baseline
             {
                 if (category == "officers" )
                 {
-                    if (this.description_values.officer_name == "Gold Round Limited")
-                    {
-
-                                            Console.WriteLine(this.description);
-                    }
-
-
                     if (description != "change-person-director-company-with-change-date" && description != "termination-director-company-with-name-termination-date" && description != "termination-secretary-company-with-name-termination-date"
                         && description != "change-person-director-company-with-change-date" && description != "change-person-secretary-company-with-change-date"
                         && description != "change-corporate-secretary-company-with-change-date" && description != "change-person-member-limited-liability-partnership-with-name-change-date"
@@ -104,7 +97,7 @@ namespace RoatpCompanyChangeTracker.Models.Data.Baseline
 
         public string action_date { get; set; }
         public string category { get; set; }
-        public string date { get; set; }
+        public DateTime date { get; set; }
         public string description { get; set; }
         public DescriptionValues description_values { get; set; }
         public Links links { get; set; }
